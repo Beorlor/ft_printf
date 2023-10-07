@@ -22,27 +22,29 @@ void testing(t_format *fmt)
     printf("specifier : %c\n", fmt->specifier);
 }
 
-int	print_arg(t_format *format, va_list var)
+int	print_arg(t_format *format, va_list ap)
 {
 	int	count;
 
 	count = 0;
+	list_processing(format);
 	if (format->specifier == 'c')
 	{
-		int test = va_arg(var, int);
-		count += write(1, &test, 1);
+		char test = va_arg(ap, int);
+		printf("%c", test);
+		//count += write(1, &test, 1);
 	}
 	return (count);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	va_list	var;
+	va_list	ap;
 	int	count;
 	t_format *format;
 	int error;
 
-	va_start(var, str);
+	va_start(ap, str);
 	format = (t_format *)malloc(sizeof(t_format));
 	count = 0;
 	while (*str != '\0')
@@ -50,22 +52,22 @@ int	ft_printf(const char *str, ...)
 		if (*str == '%')
 		{
 			error = 0;
-			str = fill_list(format, (++str), &error, var);
-			testing(format);
+			str = fill_list(format, (++str), &error, ap);
+			//testing(format);
 			if (!error)
-				count = print_arg(format, var);
+				count += print_arg(format, ap);
 		}
 		else
 			count += write(1, str, 1);
 		str++;
 	}
 	free(format);
-	va_end(var);
+	va_end(ap);
 	return (count);
 }
 
 int	main(void)
 {
-	ft_printf("%09876.012c", 'b');
+	ft_printf("%c salut  %c", 97, 98);
 	return(0);
 }

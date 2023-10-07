@@ -2,6 +2,6 @@
 
 int	main(void)
 {
-	printf("%##18.1f", -654.49);
+	printf("%0#18x", 654.49);
 	return (0);
 }

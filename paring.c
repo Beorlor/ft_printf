@@ -12,10 +12,13 @@ static void	list_reset(t_format *format)
 	format->specifier = 0;
 }
 
-static const char	*get_num_width(t_format *format, const char *str, int *error, va_list var)
+static const char	*get_num_width(t_format *format, const char *str, int *error, va_list ap)
 {
 	if (*str == '*')
-		format->width = va_arg(var, int);
+	{
+		format->width = va_arg(ap, int);
+		printf("width\n");
+	}
 	else
 	{
 		format->width = ft_atoi(str);
@@ -31,13 +34,16 @@ static const char	*get_num_width(t_format *format, const char *str, int *error, 
 	return (str);
 }
 
-static const char	*get_num_dot(t_format *format, const char *str, int *error, va_list var)
+static const char	*get_num_dot(t_format *format, const char *str, int *error, va_list ap)
 {
 	++str;
 	if (is_specifier(*str))
 		format->precision = 0;
 	if (*str == '*')
-		format->precision = va_arg(var, int);
+	{
+		format->precision = va_arg(ap, int);
+		printf("precision\n");
+	}
 	else
 	{
 		format->precision = ft_atoi(str);
@@ -55,7 +61,7 @@ static const char	*get_num_dot(t_format *format, const char *str, int *error, va
 
 //wrong order verif
 //manque de robustesse (peut etre pas enfaite)
-const char	*fill_list(t_format *format, const char *str, int *error, va_list var)
+const char	*fill_list(t_format *format, const char *str, int *error, va_list ap)
 {
 	list_reset(format);
 	while (!is_specifier(*str))
@@ -63,9 +69,9 @@ const char	*fill_list(t_format *format, const char *str, int *error, va_list var
 		if (*str == '0')
 			format->zero_flag = 1;
 		else if (is_digit(*str) || *str == '*')
-			str = get_num_width(format, str, error, var);
+			str = get_num_width(format, str, error, ap);
 		else if (*str == '.')
-			str = get_num_dot(format, str, error, var);
+			str = get_num_dot(format, str, error, ap);
 		else if (*str == '-')
 			format->minus_flag = 1;
 		else if (*str == '#')
@@ -82,4 +88,14 @@ const char	*fill_list(t_format *format, const char *str, int *error, va_list var
 	}
 	format->specifier = *str;
 	return (str);
+}
+
+void	list_processing(t_format *format)
+{
+	if (format->specifier == 'f' && format->precision == -1)
+		format->precision = 6;
+	if (format->zero_flag == 1 && format->minus_flag == 1)
+		format->zero_flag = 0;
+	if (format->space_flag == 1 && format->plus_flag == 1)
+		format->space_flag = 0;
 }
