@@ -53,8 +53,6 @@ static const char	*get_num_dot(t_format *format, const char *str, int *error, va
 	return (str);
 }
 
-//wrong order verif
-//manque de robustesse (peut etre pas enfaite)
 const char	*fill_list(t_format *format, const char *str, int *error, va_list ap)
 {
 	list_reset(format);

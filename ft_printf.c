@@ -91,6 +91,6 @@ int	ft_printf(const char *str, ...)
 int	main(void)
 {
 	//ft_printf("%c salut  %c", 97, 98);
-	ft_printf("% i 5\n", 42);
+	ft_printf("%8.4i 5\n", -42);
 	return(0);
 }
