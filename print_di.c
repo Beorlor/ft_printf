@@ -1,30 +1,8 @@
 #include "ft.h"
 
-/*int	print_string(t_format *format, char *str)
+static int	ft_nlen(long n, int *sign)
 {
-	int	count;
-	int	size;
-
-	count = 0;
-	size = ft_slen(str);
-	if (format->precision < size && format->precision >= 0)
-		size = format->precision;
-	if (format->width > size && format->minus_flag == 0)
-	{
-		if (format->zero_flag == 1)
-			count += print_zero((format->width) - size);
-		else
-			count += print_space((format->width) - size);
-	}
-	count += write(1, str, size);
-	if (format->minus_flag == 1)
-		count += print_space((format->width) - size);
-	return (count);
-}*/
-
-static size_t	ft_nlen(long n, int *sign)
-{
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (n == 0)
