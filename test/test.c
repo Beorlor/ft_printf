@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int	main(void)
 {
-	printf("%.4s 5", "sa");
+	int *i = malloc(4);
+	printf("%p 5", i);
 	return (0);
 }
