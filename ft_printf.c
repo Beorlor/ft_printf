@@ -56,6 +56,8 @@ int	print_arg(t_format *format, va_list ap)
 		count = print_adress(va_arg(ap, void *));
 	if (format->specifier == 'd' || format->specifier == 'i')
 		count = print_numb(format, (long)va_arg(ap, int));
+	if (format->specifier == 'u')
+		count = print_u_numb(format, va_arg(ap, unsigned int));
 	return (count);
 }
 
@@ -91,6 +93,6 @@ int	ft_printf(const char *str, ...)
 int	main(void)
 {
 	//ft_printf("%c salut  %c", 97, 98);
-	ft_printf("%8.4i 5\n", -42);
+	ft_printf("%8.4u 5\n", 42);
 	return(0);
 }
