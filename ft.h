@@ -27,5 +27,6 @@ int	ft_atoi(const char *nptr);
 const char	*fill_list(t_format *format, const char *str, int *error, va_list var);
 int	ft_printf(const char *str, ...);
 void	list_processing(t_format *format);
+int	ft_slen(char *s);
 
 #endif

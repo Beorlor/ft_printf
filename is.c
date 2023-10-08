@@ -41,3 +41,15 @@ int	ft_atoi(const char *nptr)
 	}
 	return (sign * res);
 }
+
+int	ft_slen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		i++;
+	}
+	return (i);
+}

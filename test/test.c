@@ -2,6 +2,6 @@
 
 int	main(void)
 {
-	printf("%0#18x", 654.49);
+	printf("%.4s 5", "sa");
 	return (0);
 }

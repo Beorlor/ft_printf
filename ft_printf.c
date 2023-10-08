@@ -22,6 +22,66 @@ void testing(t_format *fmt)
     printf("specifier : %c\n", fmt->specifier);
 }
 
+int	print_space(int i)
+{
+	int	count;
+
+	count = 0;
+	while (i-- > 0)
+		count += write(1, " ", 1);
+	return (count);
+}
+
+int	print_zero(int i)
+{
+	int	count;
+
+	count = 0;
+	while (i-- > 0)
+		count += write(1, "0", 1);
+	return (count);
+}
+
+int	print_char(t_format *format, int c)
+{
+	int	count;
+
+	count = 0;
+	if (format->width > 1 && format->minus_flag == 0)
+	{
+		if (format->zero_flag == 1)
+			count += print_zero((format->width) - 1);
+		else
+			count += print_space((format->width) - 1);
+	}
+	count += write(1, &c, 1);
+	if (format->minus_flag == 1)
+		count += print_space((format->width) - 1);
+	return (count);
+}
+
+int	print_string(t_format *format, char *str)
+{
+	int	count;
+	int	size;
+
+	count = 0;
+	size = ft_slen(str);
+	if (format->precision < size && format->precision >= 0)
+		size = format->precision;
+	if (format->width > size && format->minus_flag == 0)
+	{
+		if (format->zero_flag == 1)
+			count += print_zero((format->width) - size);
+		else
+			count += print_space((format->width) - size);
+	}
+	count += write(1, str, size);
+	if (format->minus_flag == 1)
+		count += print_space((format->width) - size);
+	return (count);
+}
+
 int	print_arg(t_format *format, va_list ap)
 {
 	int	count;
@@ -29,11 +89,9 @@ int	print_arg(t_format *format, va_list ap)
 	count = 0;
 	list_processing(format);
 	if (format->specifier == 'c')
-	{
-		char test = va_arg(ap, int);
-		printf("%c", test);
-		//count += write(1, &test, 1);
-	}
+		count = print_char(format, va_arg(ap, int));
+	if (format->specifier == 's')
+		count = print_string(format, va_arg(ap, char *));
 	return (count);
 }
 
@@ -53,7 +111,7 @@ int	ft_printf(const char *str, ...)
 		{
 			error = 0;
 			str = fill_list(format, (++str), &error, ap);
-			//testing(format);
+			testing(format);
 			if (!error)
 				count += print_arg(format, ap);
 		}
@@ -68,6 +126,7 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	ft_printf("%c salut  %c", 97, 98);
+	//ft_printf("%c salut  %c", 97, 98);
+	ft_printf("%-012.1s   5\n", "salut");
 	return(0);
 }

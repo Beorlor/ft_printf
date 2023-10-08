@@ -15,10 +15,7 @@ static void	list_reset(t_format *format)
 static const char	*get_num_width(t_format *format, const char *str, int *error, va_list ap)
 {
 	if (*str == '*')
-	{
 		format->width = va_arg(ap, int);
-		printf("width\n");
-	}
 	else
 	{
 		format->width = ft_atoi(str);
@@ -40,10 +37,7 @@ static const char	*get_num_dot(t_format *format, const char *str, int *error, va
 	if (is_specifier(*str))
 		format->precision = 0;
 	if (*str == '*')
-	{
 		format->precision = va_arg(ap, int);
-		printf("precision\n");
-	}
 	else
 	{
 		format->precision = ft_atoi(str);
