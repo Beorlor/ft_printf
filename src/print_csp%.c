@@ -25,6 +25,8 @@ int	print_string(t_format *format, char *str)
 	int	size;
 
 	count = 0;
+	if (str == NULL)
+		str = "(null)";
 	size = ft_slen(str);
 	if (format->precision < size && format->precision >= 0)
 		size = format->precision;
@@ -35,10 +37,7 @@ int	print_string(t_format *format, char *str)
 		else
 			count += print_space((format->width) - size);
 	}
-	if (str == NULL)
-		count += write(1, "(null)", 6);
-	else
-		count += write(1, str, size);
+	count += write(1, str, size);
 	if (format->minus_flag == 1)
 		count += print_space((format->width) - size);
 	return (count);

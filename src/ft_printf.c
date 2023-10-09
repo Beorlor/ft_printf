@@ -90,13 +90,8 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
-/*int	main(void)
+int	main(void)
 {
-	//ft_printf("%c salut  %c", 97, 98);
-	//ft_printf("%8.4u 5\n", 42);
-	//ft_printf("%#08x 5\n", 42);
-	//ft_printf("%#8.3X 5\n", 42);
-	ft_printf("%d\n", -2147483648);
-	ft_printf("%d\n", -2);
+	ft_printf("%s", NULL);
 	return(0);
-}*/
+}
