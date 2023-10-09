@@ -4,7 +4,7 @@
 int	main(void)
 {
 	int *i = malloc(4);
-	printf("%-5.3u 5\n", 42);
-	printf("%5.3u 5\n", -42);
+	printf("%#-8.3x 5\n", 42);
+	printf("%#8.3x 5\n", 42);
 	return (0);
 }

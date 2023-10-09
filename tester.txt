@@ -109,7 +109,7 @@ int main(void)
     return 0;
 
 	//FAIL TEST
-
+	/*
 	// Test 1: Missing type specifier
     printf("Test 1: %10\n");
     //ft_printf("Test 1: %10\n");
@@ -153,4 +153,5 @@ int main(void)
     // Test 11: More format specifiers than arguments
     printf("Test 11: %d %d %d\n", 1, 2);
     //ft_printf("Test 11: %d %d %d\n", 1, 2);
+	*/
 }

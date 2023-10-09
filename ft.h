@@ -37,6 +37,7 @@ int		print_string(t_format *format, char *str);
 int		print_adress(void *adr);
 int		print_numb(t_format *format, long n);
 int		print_u_numb(t_format *format, unsigned int n);
+int		print_x_numb(t_format *format, unsigned int n);
 
 
 #endif

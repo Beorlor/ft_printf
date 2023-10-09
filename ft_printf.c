@@ -1,9 +1,6 @@
 #include "ft.h"
 
-//if (specifier == 'c')
-//		count += print_char(va_arg(var, int));
-
-void testing(t_format *fmt)
+/*void testing(t_format *fmt)
 {
     if (!fmt)
     {
@@ -20,7 +17,7 @@ void testing(t_format *fmt)
     printf("width     : %d\n", fmt->width);
     printf("precision : %d\n", fmt->precision);
     printf("specifier : %c\n", fmt->specifier);
-}
+}*/
 
 int	print_space(int i)
 {
@@ -58,6 +55,10 @@ int	print_arg(t_format *format, va_list ap)
 		count = print_numb(format, (long)va_arg(ap, int));
 	if (format->specifier == 'u')
 		count = print_u_numb(format, va_arg(ap, unsigned int));
+	if (format->specifier == 'x' || format->specifier == 'X')
+		count = print_x_numb(format, va_arg(ap, unsigned int));
+	if (format->specifier == '%')
+		count = print_char(format, '%');
 	return (count);
 }
 
@@ -77,7 +78,6 @@ int	ft_printf(const char *str, ...)
 		{
 			error = 0;
 			str = fill_list(format, (++str), &error, ap);
-			testing(format);
 			if (!error)
 				count += print_arg(format, ap);
 		}
@@ -93,6 +93,8 @@ int	ft_printf(const char *str, ...)
 int	main(void)
 {
 	//ft_printf("%c salut  %c", 97, 98);
-	ft_printf("%8.4u 5\n", 42);
+	//ft_printf("%8.4u 5\n", 42);
+	printf("%#08x 5\n", 42);
+	printf("%#8.3X 5\n", 42);
 	return(0);
 }

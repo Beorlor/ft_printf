@@ -95,4 +95,10 @@ void	list_processing(t_format *format)
 			|| format->specifier == 'u' || format->specifier == 'x'
 				|| format->specifier == 'X'))
 		format->zero_flag = 0;
+	if (format->specifier == 'u' || format->specifier == 'x'
+				|| format->specifier == 'X')
+	{
+		format->space_flag = 0;
+		format->plus_flag = 0;
+	}
 }
