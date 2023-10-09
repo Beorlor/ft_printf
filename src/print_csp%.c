@@ -35,7 +35,10 @@ int	print_string(t_format *format, char *str)
 		else
 			count += print_space((format->width) - size);
 	}
-	count += write(1, str, size);
+	if (str == NULL)
+		count += write(1, "(null)", 6);
+	else
+		count += write(1, str, size);
 	if (format->minus_flag == 1)
 		count += print_space((format->width) - size);
 	return (count);
@@ -53,17 +56,29 @@ static void	print_hex(unsigned long long adr, int *count)
 }
 
 //if adress is NULL ??
-int	print_adress(void *adr)
+int	print_adress(t_format *format, void *adr)
 {
 	int	count;
 	unsigned long long adr_value;
 
 	count = 0;
 	adr_value = (unsigned long long) adr;
-	count += write(1, "0x", 2);
+	/*if (format->zero_flag == 1)
+	{
+		if (adr_value == 0)
+			count += print_zero((format->width) - 5);
+		else
+		{
+			count += write(1, "0x", 2);
+
+		}
+	}*/
 	if (adr_value == 0)
-		count += write(1, "0", 1);
+		count += write(1, "(nil)", 5);
 	else
-			print_hex(adr_value, &count);
+	{
+		count += write(1, "0x", 2);
+		print_hex(adr_value, &count);
+	}
 	return (count);
 }

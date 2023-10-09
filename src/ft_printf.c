@@ -50,7 +50,7 @@ int	print_arg(t_format *format, va_list ap)
 	if (format->specifier == 's')
 		count = print_string(format, va_arg(ap, char *));
 	if (format->specifier == 'p')
-		count = print_adress(va_arg(ap, void *));
+		count = print_adress(format, va_arg(ap, void *));
 	if (format->specifier == 'd' || format->specifier == 'i')
 		count = print_numb(format, (long)va_arg(ap, int));
 	if (format->specifier == 'u')
