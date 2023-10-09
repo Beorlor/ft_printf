@@ -1,10 +1,12 @@
 #include "ft.h"
 
-static int	ft_nlen(long n, int *sign)
+static int	ft_nlen(t_format *format, long n, int *sign)
 {
 	int	i;
 
 	i = 0;
+	if (format->precision == 0)
+		return (0);
 	if (n == 0)
 		return (1);
 	if (n < 0)
@@ -19,11 +21,13 @@ static int	ft_nlen(long n, int *sign)
 	return (i);
 }
 
-static int	ft_putnb(long n)
+static int	ft_putnb(t_format *format, long n)
 {
 	char	c;
 	int		count;
 
+	if (format->precision == 0)
+		return (0);
 	if (n < 0)
 		n = -n;
 	if (n < 10)
@@ -32,7 +36,7 @@ static int	ft_putnb(long n)
 		write(1, &c, 1);
 		return (1);
 	}
-	count = ft_putnb(n / 10);
+	count = ft_putnb(format, n / 10);
 	c = (n % 10) + '0';
 	count += write(1, &c, 1);
 	return (count);
@@ -98,7 +102,7 @@ int	print_numb(t_format *format, long n)
 	int	nb_total_size;
 
 	count = 0;
-	size = ft_nlen(n, &sign);
+	size = ft_nlen(format, n, &sign);
 	if (format->zero_flag == 1)
 		count += zero_flag_case(format, &size, sign);
 	if (format->zero_flag == 0)
@@ -113,7 +117,7 @@ int	print_numb(t_format *format, long n)
 		if (nb_total_size > size && format->precision >= 0)
 			count += print_zero(nb_total_size - size);
 	}
-	count += ft_putnb(n);
+	count += ft_putnb(format, n);
 	if (format->minus_flag == 1)
 		count += print_space((format->width) - nb_total_size);
 	return (count);
