@@ -63,6 +63,7 @@ int	print_adress(t_format *format, void *adr)
 
 	count = 0;
 	adr_value = (unsigned long long) adr;
+	format->zero_flag = 0;
 	/*if (format->zero_flag == 1)
 	{
 		if (adr_value == 0)
