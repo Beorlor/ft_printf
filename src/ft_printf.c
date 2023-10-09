@@ -90,8 +90,8 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	ft_printf("%s", NULL);
 	return(0);
-}
+}*/

@@ -23,13 +23,20 @@ int	print_string(t_format *format, char *str)
 {
 	int	count;
 	int	size;
+	int	is_null;
 
 	count = 0;
+	is_null = 0;
 	if (str == NULL)
+	{
 		str = "(null)";
+		is_null = 1;
+	}
 	size = ft_slen(str);
 	if (format->precision < size && format->precision >= 0)
 		size = format->precision;
+	if (is_null == 1 && size < 6)
+		size = 0;
 	if (format->width > size && format->minus_flag == 0)
 	{
 		if (format->zero_flag == 1)
