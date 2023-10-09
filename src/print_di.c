@@ -5,7 +5,7 @@ static int	ft_nlen(t_format *format, long n, int *sign)
 	int	i;
 
 	i = 0;
-	if (format->precision == 0)
+	if (format->precision == -2 || (format->precision == 0 && n == 0))
 		return (0);
 	if (n == 0)
 		return (1);
@@ -26,7 +26,7 @@ static int	ft_putnb(t_format *format, long n)
 	char	c;
 	int		count;
 
-	if (format->precision == 0)
+	if (format->precision == -2 || (format->precision == 0 && n == 0))
 		return (0);
 	if (n < 0)
 		n = -n;

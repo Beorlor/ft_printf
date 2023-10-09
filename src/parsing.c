@@ -31,11 +31,12 @@ static const char	*get_num_width(t_format *format, const char *str, int *error, 
 	return (str);
 }
 
+//precision is -1 for neutral and -2 if no digit for precision
 static const char	*get_num_dot(t_format *format, const char *str, int *error, va_list ap)
 {
 	++str;
 	if (is_specifier(*str))
-		format->precision = 0;
+		format->precision = -2;
 	if (*str == '*')
 		format->precision = va_arg(ap, int);
 	else
