@@ -1,10 +1,12 @@
 #include "ft.h"
 
-static int	ft_nlen(unsigned int n)
+static int	ft_nlen(t_format *format, unsigned int n)
 {
 	int	i;
 
 	i = 0;
+	if (format->precision == 0)
+		return (0);
 	if (n == 0)
 		return (1);
 	while (n)
@@ -15,18 +17,20 @@ static int	ft_nlen(unsigned int n)
 	return (i);
 }
 
-static int	ft_putnb(unsigned int n)
+static int	ft_putnb(t_format *format, unsigned int n)
 {
 	char	c;
 	int		count;
 
+	if (format->precision == 0)
+		return (0);
 	if (n < 10)
 	{
 		c = n + '0';
 		write(1, &c, 1);
 		return (1);
 	}
-	count = ft_putnb(n / 10);
+	count = ft_putnb(format, n / 10);
 	c = (n % 10) + '0';
 	count += write(1, &c, 1);
 	return (count);
@@ -68,7 +72,7 @@ int	print_u_numb(t_format *format, unsigned int n)
 	int	nb_total_size;
 
 	count = 0;
-	size = ft_nlen(n);
+	size = ft_nlen(format, n);
 	if (format->zero_flag == 1)
 		count += zero_flag_case(format, &size);
 	if (format->zero_flag == 0)
@@ -77,7 +81,7 @@ int	print_u_numb(t_format *format, unsigned int n)
 		if (nb_total_size > size && format->precision >= 0)
 			count += print_zero(nb_total_size - size);
 	}
-	count += ft_putnb(n);
+	count += ft_putnb(format, n);
 	if (format->minus_flag == 1)
 		count += print_space((format->width) - nb_total_size);
 	return (count);
