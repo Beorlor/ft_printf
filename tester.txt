@@ -1,111 +1,112 @@
 #include <stdio.h>
 #include <limits.h>
+#include "ft.h"
 
 int main(void)
 {
     // Test 1: Basic functionality with different specifiers
     printf("Test 1a: Char: %c\n", 'a');
-    //ft_printf("Test 1a: Char: %c\n", 'a');
+    ft_printf("Test 1a: Char: %c\n", 'a');
 
     printf("Test 1b: String: %s\n", "Hello, World!");
-    //ft_printf("Test 1b: String: %s\n", "Hello, World!");
+    ft_printf("Test 1b: String: %s\n", "Hello, World!");
 
     // Test 2: Width specification
     printf("Test 2a: Width with string: %10s\n", "test");
-    //ft_printf("Test 2a: Width with string: %10s\n", "test");
+    ft_printf("Test 2a: Width with string: %10s\n", "test");
 
     printf("Test 2b: Width with decimal: %5d\n", 42);
-    //ft_printf("Test 2b: Width with decimal: %5d\n", 42);
+    ft_printf("Test 2b: Width with decimal: %5d\n", 42);
 
     // Test 3: Flags
     printf("Test 3a: Minus Flag with string: %-10s\n", "test");
-    //ft_printf("Test 3a: Minus Flag with string: %-10s\n", "test");
+    ft_printf("Test 3a: Minus Flag with string: %-10s\n", "test");
 
     printf("Test 3b: Zero Flag with decimal: %010d\n", 42);
-    //ft_printf("Test 3b: Zero Flag with decimal: %010d\n", 42);
+    ft_printf("Test 3b: Zero Flag with decimal: %010d\n", 42);
 
     // Test 4: Precision
     printf("Test 4a: Precision with string: %.5s\n", "HelloWorld");
-    //ft_printf("Test 4a: Precision with string: %.5s\n", "HelloWorld");
+    ft_printf("Test 4a: Precision with string: %.5s\n", "HelloWorld");
 
     printf("Test 4b: Precision with decimal: %.5d\n", 42);
-    //ft_printf("Test 4b: Precision with decimal: %.5d\n", 42);
+    ft_printf("Test 4b: Precision with decimal: %.5d\n", 42);
 
     // Test 5: Flags and Width Combined
     printf("Test 5a: Minus Flag and Width with string: %-10s\n", "test");
-    //ft_printf("Test 5a: Minus Flag and Width with string: %-10s\n", "test");
+    ft_printf("Test 5a: Minus Flag and Width with string: %-10s\n", "test");
 
     printf("Test 5b: Zero and Width with hex: %#010x\n", 42);
-    //ft_printf("Test 5b: Zero and Width with hex: %#010x\n", 42);
+    ft_printf("Test 5b: Zero and Width with hex: %#010x\n", 42);
 
     // Test 6: Edge Cases
     printf("Test 6a: Min Int: %d\n", INT_MIN);
-    //ft_printf("Test 6a: Min Int: %d\n", INT_MIN);
+    ft_printf("Test 6a: Min Int: %d\n", INT_MIN);
 
     printf("Test 6b: Max Unsigned Int: %u\n", UINT_MAX);
-    //ft_printf("Test 6b: Max Unsigned Int: %u\n", UINT_MAX);
+    ft_printf("Test 6b: Max Unsigned Int: %u\n", UINT_MAX);
 
     // Test 7: Random Mix of flags, width, precision, and specifiers
-    printf("Test 7: Mix: %-10.5d %#10x\n", 12345, 42);
+    //printf("Test 7: Mix: %-10.5d %#10x\n", 12345, 42);
     //ft_printf("Test 7: Mix: %-10.5d %#10x\n", 12345, 42);
 
     // Test 8: Invalid Specifier and Flag Combination
     printf("Test 8a: Invalid Specifier: %z\n");
-    //ft_printf("Test 8a: Invalid Specifier: %z\n");
+    ft_printf("Test 8a: Invalid Specifier: %z\n");
 
     printf("Test 8b: Invalid Flag and Specifier: %#s\n", "test");
-    //ft_printf("Test 8b: Invalid Flag and Specifier: %#s\n", "test");
+    ft_printf("Test 8b: Invalid Flag and Specifier: %#s\n", "test");
 
 	//MORE COMPLEX TEST
 
 	// Test 1: Complex Combinations of Flags, Width, and Precision
     printf("Test 1a: Complex: %0-10.5d\n", 42);
-    //ft_printf("Test 1a: Complex: %0-10.5d\n", 42);
+    ft_printf("Test 1a: Complex: %0-10.5d\n", 42);
 
     printf("Test 1b: Complex: %-+10.5i\n", -42);
-    //ft_printf("Test 1b: Complex: %-+10.5i\n", -42);
+    ft_printf("Test 1b: Complex: %-+10.5i\n", -42);
 
     // Test 2: Large Width and Precision Values
     printf("Test 2a: Large Width: %100.50d\n", INT_MAX);
-    //ft_printf("Test 2a: Large Width: %100.50d\n", INT_MAX);
+    ft_printf("Test 2a: Large Width: %100.50d\n", INT_MAX);
 
     printf("Test 2b: Large Precision: %.100d\n", 42);
-    //ft_printf("Test 2b: Large Precision: %.100d\n", 42);
+    ft_printf("Test 2b: Large Precision: %.100d\n", 42);
 
     // Test 3: Using '*' to Specify Width and Precision Dynamically
-    printf("Test 3a: Dynamic Width: %*d\n", 10, 42);
+    //printf("Test 3a: Dynamic Width: %*d\n", 10, 42);
     //ft_printf("Test 3a: Dynamic Width: %*d\n", 10, 42);
 
-    printf("Test 3b: Dynamic Precision: %.*d\n", 5, 42);
+    //printf("Test 3b: Dynamic Precision: %.*d\n", 5, 42);
     //ft_printf("Test 3b: Dynamic Precision: %.*d\n", 5, 42);
 
-    printf("Test 3c: Dynamic Width and Precision: %*.*d\n", 10, 5, 42);
+    //printf("Test 3c: Dynamic Width and Precision: %*.*d\n", 10, 5, 42);
     //ft_printf("Test 3c: Dynamic Width and Precision: %*.*d\n", 10, 5, 42);
 
     // Test 4: Complex and Random Mix of flags, width, precision, and specifiers
-    printf("Test 4a: Random Mix: %-0+*.*d %#x\n", 15, 10, 99999, 42);
+    //printf("Test 4a: Random Mix: %-0+*.*d %#x\n", 15, 10, 99999, 42);
     //ft_printf("Test 4a: Random Mix: %-0+*.*d %#x\n", 15, 10, 99999, 42);
 
-    printf("Test 4b: Random Mix: %0*.*x %*s\n", 15, 10, 99999, 10, "hello");
+    //printf("Test 4b: Random Mix: %0*.*x %*s\n", 15, 10, 99999, 10, "hello");
     //ft_printf("Test 4b: Random Mix: %0*.*x %*s\n", 15, 10, 99999, 10, "hello");
 
     // Test 5: Very Large Numbers
     printf("Test 5a: Large Numbers: %.50d\n", INT_MAX);
-    //ft_printf("Test 5a: Large Numbers: %.50d\n", INT_MAX);
+    ft_printf("Test 5a: Large Numbers: %.50d\n", INT_MAX);
 
     printf("Test 5b: Large Numbers: %.50u\n", UINT_MAX);
-    //ft_printf("Test 5b: Large Numbers: %.50u\n", UINT_MAX);
+    ft_printf("Test 5b: Large Numbers: %.50u\n", UINT_MAX);
 
     // Test 6: Min and Max Boundary Values
     printf("Test 6a: Min Boundary: %d\n", INT_MIN);
-    //ft_printf("Test 6a: Min Boundary: %d\n", INT_MIN);
+    ft_printf("Test 6a: Min Boundary: %d\n", INT_MIN);
 
     printf("Test 6b: Max Boundary: %d\n", INT_MAX);
-    //ft_printf("Test 6b: Max Boundary: %d\n", INT_MAX);
+    ft_printf("Test 6b: Max Boundary: %d\n", INT_MAX);
 
     // Test 7: Pointer Printing
     printf("Test 7: Pointer: %p\n", (void*)42);
-    //ft_printf("Test 7: Pointer: %p\n", (void*)42);
+    ft_printf("Test 7: Pointer: %p\n", (void*)42);
     return 0;
 
 	//FAIL TEST

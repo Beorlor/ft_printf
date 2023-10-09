@@ -47,7 +47,7 @@ static int	zero_flag_case(t_format *format, int *size)
 	{
 		if (format->specifier == 'x')
 			count += write(1, "0x", 2);
-		if (format->specifier == 'x')
+		if (format->specifier == 'X')
 			count += write(1, "0X", 2);
 		*size += 2;
 	}
@@ -99,7 +99,7 @@ int	print_x_numb(t_format *format, unsigned int n)
 		{
 			if (format->specifier == 'x')
 				count += write(1, "0x", 2);
-			if (format->specifier == 'x')
+			if (format->specifier == 'X')
 				count += write(1, "0X", 2);
 		}
 		if (nb_total_size > size && format->precision >= 0)

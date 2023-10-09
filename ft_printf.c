@@ -94,7 +94,9 @@ int	main(void)
 {
 	//ft_printf("%c salut  %c", 97, 98);
 	//ft_printf("%8.4u 5\n", 42);
-	printf("%#08x 5\n", 42);
-	printf("%#8.3X 5\n", 42);
+	//ft_printf("%#08x 5\n", 42);
+	//ft_printf("%#8.3X 5\n", 42);
+	ft_printf("%d\n", -2147483648);
+	ft_printf("%d\n", -2);
 	return(0);
 }
