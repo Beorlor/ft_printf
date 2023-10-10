@@ -69,8 +69,8 @@ static int	no_zero_flag_case(t_format *format, int *size, int *nb_total_size)
 		*nb_total_size = format->precision;
 		if (format->hash_flag == 1)
 		{
-			(*nb_total_size)++;
-			(*size)++;
+			(*nb_total_size) += 2;
+			(*size) += 2;
 		}
 		if (format->width > *nb_total_size && format->minus_flag == 0)
 			count += print_space((format->width) - *nb_total_size);
@@ -78,7 +78,7 @@ static int	no_zero_flag_case(t_format *format, int *size, int *nb_total_size)
 	else
 	{
 		if (format->hash_flag == 1)
-			(*size)++;
+			(*size) += 2;
 		*nb_total_size = *size;
 		if (format->width > *size && format->minus_flag == 0)
 			count += print_space((format->width) - *size);
