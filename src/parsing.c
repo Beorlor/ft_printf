@@ -94,10 +94,10 @@ void	list_processing(t_format *format)
 	if (format->zero_flag == 1 && format->precision >= 0
 		&& (format->specifier == 'd' || format->specifier == 'i'
 			|| format->specifier == 'u' || format->specifier == 'x'
-				|| format->specifier == 'X'))
+				|| format->specifier == 'X' || format->specifier == 'p'))
 		format->zero_flag = 0;
 	if (format->specifier == 'u' || format->specifier == 'x'
-				|| format->specifier == 'X')
+				|| format->specifier == 'X'  || format->specifier == 'p')
 	{
 		format->space_flag = 0;
 		format->plus_flag = 0;
