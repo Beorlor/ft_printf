@@ -1,4 +1,16 @@
-#include "ft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_p.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jedurand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/10 13:26:57 by jedurand          #+#    #+#             */
+/*   Updated: 2023/10/11 14:17:05 by jedurand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
 
 static int	ft_nlen(t_format *format, unsigned long long n)
 {
@@ -50,7 +62,8 @@ static int	zero_flag_case(t_format *format, int *size, unsigned long long adr)
 	return (count);
 }
 
-static int	no_zero_flag_case(t_format *format, int *size, int *nb_total_size, unsigned long long adr)
+static int	no_zero_flag_case(t_format *format, int *size, int *nb_total_size,
+			unsigned long long adr)
 {
 	int	count;
 
@@ -79,13 +92,13 @@ static int	no_zero_flag_case(t_format *format, int *size, int *nb_total_size, un
 
 int	print_adress(t_format *format, void *adr)
 {
-	int	count;
-	int	size;
-	int	nb_total_size;
-    unsigned long long adr_value;
+	int					count;
+	int					size;
+	int					nb_total_size;
+	unsigned long long	adr_value;
 
 	count = 0;
-    adr_value = (unsigned long long) adr;
+	adr_value = (unsigned long long) adr;
 	size = ft_nlen(format, adr_value);
 	if (format->zero_flag == 1)
 		count += zero_flag_case(format, &size, adr_value);

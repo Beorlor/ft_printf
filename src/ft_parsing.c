@@ -1,4 +1,16 @@
-#include "ft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jedurand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/10 13:11:21 by jedurand          #+#    #+#             */
+/*   Updated: 2023/10/10 13:15:43 by jedurand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
 
 static void	list_reset(t_format *format)
 {
@@ -12,7 +24,8 @@ static void	list_reset(t_format *format)
 	format->specifier = 0;
 }
 
-static const char	*get_num_width(t_format *format, const char *str, int *error, va_list ap)
+static const char	*get_num_width(t_format *format, const char *str,
+			int *error, va_list ap)
 {
 	if (*str == '*')
 		format->width = va_arg(ap, int);
@@ -32,7 +45,8 @@ static const char	*get_num_width(t_format *format, const char *str, int *error, 
 }
 
 //precision is -1 for neutral and -2 if no digit for precision
-static const char	*get_num_dot(t_format *format, const char *str, int *error, va_list ap)
+static const char	*get_num_dot(t_format *format, const char *str, int *error,
+			va_list ap)
 {
 	++str;
 	if (is_specifier(*str))
@@ -54,7 +68,8 @@ static const char	*get_num_dot(t_format *format, const char *str, int *error, va
 	return (str);
 }
 
-const char	*fill_list(t_format *format, const char *str, int *error, va_list ap)
+const char	*fill_list(t_format *format, const char *str, int *error,
+			va_list ap)
 {
 	list_reset(format);
 	while (!is_specifier(*str))
@@ -94,10 +109,10 @@ void	list_processing(t_format *format)
 	if (format->zero_flag == 1 && format->precision >= 0
 		&& (format->specifier == 'd' || format->specifier == 'i'
 			|| format->specifier == 'u' || format->specifier == 'x'
-				|| format->specifier == 'X' || format->specifier == 'p'))
+			|| format->specifier == 'X' || format->specifier == 'p'))
 		format->zero_flag = 0;
 	if (format->specifier == 'u' || format->specifier == 'x'
-				|| format->specifier == 'X'  || format->specifier == 'p')
+		|| format->specifier == 'X' || format->specifier == 'p')
 	{
 		format->space_flag = 0;
 		format->plus_flag = 0;

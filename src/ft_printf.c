@@ -1,23 +1,16 @@
-#include "ft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jedurand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/10 13:09:59 by jedurand          #+#    #+#             */
+/*   Updated: 2023/10/10 13:10:45 by jedurand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*void testing(t_format *fmt)
-{
-    if (!fmt)
-    {
-        printf("Structure pointer is NULL!\n");
-        return;
-    }
-
-    printf("Contents of t_format structure:\n");
-    printf("minus_flag: %d\n", fmt->minus_flag);
-    printf("zero_flag : %d\n", fmt->zero_flag);
-    printf("hash_flag : %d\n", fmt->hash_flag);
-    printf("space_flag: %d\n", fmt->space_flag);
-    printf("plus_flag : %d\n", fmt->plus_flag);
-    printf("width     : %d\n", fmt->width);
-    printf("precision : %d\n", fmt->precision);
-    printf("specifier : %c\n", fmt->specifier);
-}*/
+#include "ft_printf.h"
 
 int	print_space(int i)
 {
@@ -64,10 +57,10 @@ int	print_arg(t_format *format, va_list ap)
 
 int	ft_printf(const char *str, ...)
 {
-	va_list	ap;
-	int	count;
-	t_format *format;
-	int error;
+	va_list		ap;
+	int			count;
+	t_format	*format;
+	int			error;
 
 	va_start(ap, str);
 	format = (t_format *)malloc(sizeof(t_format));
@@ -89,9 +82,3 @@ int	ft_printf(const char *str, ...)
 	va_end(ap);
 	return (count);
 }
-
-/*int	main(void)
-{
-	ft_printf("%s", NULL);
-	return(0);
-}*/

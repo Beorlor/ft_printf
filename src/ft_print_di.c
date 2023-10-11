@@ -1,10 +1,23 @@
-#include "ft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_di.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jedurand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/10 13:25:28 by jedurand          #+#    #+#             */
+/*   Updated: 2023/10/11 14:29:00 by jedurand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
 
 static int	ft_nlen(t_format *format, long n, int *sign)
 {
 	int	i;
 
 	i = 0;
+	*sign = 0;
 	if (format->precision == -2 || (format->precision == 0 && n == 0))
 		return (0);
 	if (n == 0)
@@ -67,7 +80,8 @@ static int	zero_flag_case(t_format *format, int *size, int sign)
 	return (count);
 }
 
-static int	no_zero_flag_case(t_format *format, int *size, int *nb_total_size, int sign)
+static int	no_zero_flag_case(t_format *format, int *size, int *nb_total_size,
+			int sign)
 {
 	int	count;
 

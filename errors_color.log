@@ -1,0 +1,8 @@
+For [0;35m/nfs/homes/jedurand/francinette/tests/printf/printfTester/tests/sharp_test.cpp[0m:
+[0;33m25:[0m 	TEST(1, print(" %#x ", 0));
+[0;33m49:[0m 	TEST(25, print(" %#x ", LONG_MIN));
+[0;33m53:[0m 	TEST(29, print(" %#x %#x %#x %#x %#x %#x %#x", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
+[0;33m56:[0m 	TEST(31, print(" %#X ", 0));
+[0;33m80:[0m 	TEST(55, print(" %#X ", LONG_MIN));
+[0;33m84:[0m 	TEST(59, print(" %#X %#X %#X %#X %#X %#X %#X", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
+
