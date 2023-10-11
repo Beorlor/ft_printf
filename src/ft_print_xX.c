@@ -6,7 +6,7 @@
 /*   By: jedurand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:27:26 by jedurand          #+#    #+#             */
-/*   Updated: 2023/10/11 14:17:00 by jedurand         ###   ########.fr       */
+/*   Updated: 2023/10/11 15:13:56 by jedurand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ static int	ft_putnb(t_format *format, unsigned int n)
 	return (count);
 }
 
-static int	zero_flag_case(t_format *format, int *size)
+static int	zero_flag_case(t_format *format, int *size, unsigned int n)
 {
 	int	count;
 
 	count = 0;
-	if (format->hash_flag == 1)
+	if (format->hash_flag == 1 && n != 0)
 	{
 		if (format->specifier == 'x')
 			count += write(1, "0x", 2);
@@ -71,7 +71,8 @@ static int	zero_flag_case(t_format *format, int *size)
 	return (count);
 }
 
-static int	no_zero_flag_case(t_format *format, int *size, int *nb_total_size)
+static int	no_zero_flag_case(t_format *format, int *size, int *nb_total_size
+			, unsigned int n)
 {
 	int	count;
 
@@ -79,7 +80,7 @@ static int	no_zero_flag_case(t_format *format, int *size, int *nb_total_size)
 	if (format->precision > *size && format->precision >= 0)
 	{
 		*nb_total_size = format->precision;
-		if (format->hash_flag == 1)
+		if (format->hash_flag == 1 && n != 0)
 		{
 			(*nb_total_size) += 2;
 			(*size) += 2;
@@ -89,7 +90,7 @@ static int	no_zero_flag_case(t_format *format, int *size, int *nb_total_size)
 	}
 	else
 	{
-		if (format->hash_flag == 1)
+		if (format->hash_flag == 1 && n != 0)
 			(*size) += 2;
 		*nb_total_size = *size;
 		if (format->width > *size && format->minus_flag == 0)
@@ -107,11 +108,11 @@ int	print_x_numb(t_format *format, unsigned int n)
 	count = 0;
 	size = ft_nlen(format, n);
 	if (format->zero_flag == 1)
-		count += zero_flag_case(format, &size);
+		count += zero_flag_case(format, &size, n);
 	if (format->zero_flag == 0)
 	{
-		count += no_zero_flag_case(format, &size, &nb_total_size);
-		if (format->hash_flag == 1)
+		count += no_zero_flag_case(format, &size, &nb_total_size, n);
+		if (format->hash_flag == 1 && n != 0)
 		{
 			if (format->specifier == 'x')
 				count += write(1, "0x", 2);
