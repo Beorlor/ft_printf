@@ -6,9 +6,10 @@ OBJ_DIR = obj
 INC_DIR = include
 
 # Source and object files
-SRC_FILES = $(notdir $(wildcard $(SRC_DIR)/*.c))
+SRC_FILES = ft_parsing.c ft_print_di.c ft_print_p.c ft_print_xX.c \
+            ft_print_cs.c ft_printf.c ft_print_u.c ft_utils.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(addprefix $(OBJ_DIR)/, $(OBJ_FILES))
 
 # Compiler and flags
@@ -37,11 +38,5 @@ fclean: clean
 re: fclean all
 
 bonus: all
-	# Add rules for bonus compilation if needed.
 
-debug: CFLAGS += -g
-debug: all
-	# Add rules for debug compilation if needed.
-
-.PHONY: all clean fclean re bonus debug
-
+.PHONY: all clean fclean re bonus
